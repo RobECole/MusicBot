@@ -1807,8 +1807,14 @@ class MusicBot(discord.Client):
         await self.disconnect_all_voice_clients()
         raise exceptions.RestartSignal
 
-    async def cmd_shutdown(self, channel):
-        await self.safe_send_message(channel, ":wave:")
+    async def cmd_gettherug(self, channel):
+        await self.safe_send_message(channel, "Fetching the rug, sir!")
+        time.sleep(10)
+        await self.safe_send_message(channel, "Sir, I have fetched the rug")
+        raise exceptions.RestartSignal
+
+    async def cmd_dismiss(self, channel):
+        await self.safe_send_message(channel, "Very well, sir! :man_in_tuxedo:")
         await self.disconnect_all_voice_clients()
         raise exceptions.TerminateSignal
 
@@ -2010,6 +2016,8 @@ class MusicBot(discord.Client):
             self.safe_print("[Servers] \"%s\" changed regions: %s -> %s" % (after.name, before.region, after.region))
 
             await self.reconnect_voice_client(after)
+
+
 
 
 if __name__ == '__main__':
